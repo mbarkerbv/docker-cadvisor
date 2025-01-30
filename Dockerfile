@@ -1,12 +1,12 @@
-FROM golang:1.22-alpine AS builder
+FROM golang:alpine3.19 AS builder
 
 WORKDIR /usr/src/
 
-RUN apk update --no-cache && \
-    apk add --no-cache make git gcc musl-dev bash && \
-    git clone https://github.com/google/cadvisor.git && \
-    cd cadvisor && \
-    make build
+RUN apk update --no-cache; \
+    apk add --no-cache make git gcc musl-dev bash; \
+    git clone https://github.com/google/cadvisor.git; \
+    cd cadvisor; \
+    make build;
 
 FROM alpine:3.19
 
